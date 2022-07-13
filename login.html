@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* h2 {
+            text-align: center;
+        }
+        .form {
+            text-align: center;
+        } */
+    </style>
+</head>
+<body>
+    <nav class="Header">
+        <section class="HeaderImage">
+            <img src="./images/logo.png" alt="logo" height="40px" width="40px" />
+        </section>
+        <div class="HeaderAncor">
+            <a>Home</a>
+            <a href="./login.html">Login</a>
+            <a href="./register.html">Registation</a>
+        </div>
+    </nav>
+
+
+    <section class="ashiklogin">
+        <h1>Login</h1>
+        <div class="loginForm">
+            <input class="inputBox" type="text" placeholder="username" name="name" id="name" required><br>
+            <input class="inputBox" type="text" placeholder="tele" name="tele" id="tele"> <br>
+            <button class="submitButton" type="button" name="submit" id="submit">Login</button>
+        </div>
+        <p class="accountUpdate"><a href="./register.html">Create a new account</a></p>
+    </section>
+    
+
+    
+</body>
+<script>
+    $("#submit").click(function(){
+        // the DOM operation by jQuery
+        var user_name = $("#name").val();
+        var user_tele = $("#tele").val();
+        // alert(user_name + user_tele);
+        $.ajax({
+            method: "GET",
+            url: "server.php",
+            data: { name: user_name, tele: user_tele}
+        })
+        .done(function(msg) {
+            alert("Found Status " + msg);
+            if(msg == "yes"){
+                window.location.href="home.html";
+            }
+            else if (msg == "no"){
+                window.location.href="register.html";
+            }
+            else{
+
+            }
+        });
+    });
+</script>
+</html> 
